@@ -135,17 +135,17 @@ function omz_urlencode() {
   if [[ -z $opts[(r)-P] ]]; then spaces_as_plus=1; fi
   local str="$in_str"
 
-  # URLs must use UTF-8 encoding; convert str to UTF-8 if required
+  # # URLs must use UTF-8 encoding; convert str to UTF-8 if required
   local encoding=$langinfo[CODESET]
   local safe_encodings
   safe_encodings=(UTF-8 utf8 US-ASCII)
-  if [[ -z ${safe_encodings[(r)$encoding]} ]]; then
-    str=$(echo -E "$str" | iconv -f $encoding -t UTF-8)
-    if [[ $? != 0 ]]; then
-      echo "Error converting string from $encoding to UTF-8" >&2
-      return 1
-    fi
-  fi
+  # if [[ -z ${safe_encodings[(r)$encoding]} ]]; then
+  #   str=$(echo -E "$str" | iconv -f $encoding -t UTF-8)
+  #   if [[ $? != 0 ]]; then
+  #     echo "Error converting string from $encoding to UTF-8" >&2
+  #     return 1
+  #   fi
+  # fi
 
   # Use LC_CTYPE=C to process text byte-by-byte
   local i byte ord LC_ALL=C

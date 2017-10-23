@@ -1,11 +1,10 @@
 # Yay! High voltage and arrows!
-
 prompt_setup_pygmalion(){
   ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[green]%}"
   ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
   ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[yellow]%}⚡%{$reset_color%}"
   ZSH_THEME_GIT_PROMPT_CLEAN=""
-
+  pre_prompt='%{$fg[red]%}$(virtualenv_info)%{$reset_color%}'
   base_prompt='%{$fg[magenta]%}%n%{$reset_color%}%{$fg[cyan]%}@%{$reset_color%}%{$fg[yellow]%}%m%{$reset_color%}%{$fg[red]%}:%{$reset_color%}%{$fg[cyan]%}%0~%{$reset_color%}%{$fg[red]%}|%{$reset_color%}'
   post_prompt='%{$fg[cyan]%}⇒%{$reset_color%}  '
 
@@ -26,7 +25,7 @@ prompt_pygmalion_precmd(){
   if [[ $prompt_length -gt 40 ]]; then
     nl=$'\n%{\r%}';
   fi
-  PROMPT="$base_prompt$gitinfo$nl$post_prompt"
+  PROMPT="$pre_prompt$base_prompt$gitinfo$nl$post_prompt"
 }
 
 prompt_setup_pygmalion
